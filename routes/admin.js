@@ -3,8 +3,6 @@ const adminController = require('../controllers/admin');
 
 const router = express.Router();
 
-const products = [];
-
 router.get('/add-product', adminController.getAddProduct);
 
 router.get('/products', adminController.getProducts);
