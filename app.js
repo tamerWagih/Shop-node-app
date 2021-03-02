@@ -15,9 +15,9 @@ const User = require('./models/user');
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 const authRoutes = require('./routes/auth');
+const product = require('./models/product');
 
-const MONGODB_URI =
-  'mongodb+srv://tamer:123@cluster0.18pqb.mongodb.net/shop?w=majority';
+const MONGODB_URI = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.18pqb.mongodb.net/${process.env.MONGO_DEFAULT_DATABASE}?w=majority`;
 
 const app = express();
 const store = new MongoDBStore({
@@ -114,7 +114,7 @@ mongoose
   .connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then((result) => {
     console.log('Connected!');
-    app.listen(3000);
+    app.listen(process.env.PORT || 3000);
   })
   .catch((err) => {
     console.log(err);
